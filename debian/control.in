@@ -1,0 +1,47 @@
+Source: quagga-mr
+Section: net
+Priority: optional
+Maintainer: @MAINTAINER@ <@MAINTAINER_EMAIL@>
+Build-Depends: debhelper (>= 5), autotools-dev, gawk, libreadline-dev, pkg-config
+Build-Depends-Indep: texinfo (>= 4.7), imagemagick, texlive-latex-base, texlive-generic-recommended, groff
+Standards-Version: 3.8.4
+Homepage: http://www.nrl.navy.mil/itd/ncs/products/ospf-manet
+
+Package: quagga-mr
+Architecture: any
+Depends: ${shlibs:Depends}, logrotate (>= 3.2-11), iproute | iproute2, ${misc:Depends}
+Pre-Depends: adduser
+Conflicts: quagga, frr, zebra, zebra-pj
+Replaces: quagga, frr, zebra, zebra-pj
+Suggests: snmpd
+Description: Mobile Routing variant of Quagga
+ The Mobile Routing variant of Quagga (http://www.quagga.net/) is a
+ research implementation of OSPF MANET Designated Routers (MDRs) that
+ implements the following RFCs:
+ .
+   - RFC 5614 Mobile Ad Hoc Network (MANET) Extension of OSPF Using
+	      Connected Dominating Set (CDS) Flooding
+ .
+   - RFC 5243 OSPF Database Exchange Summary List Optimization
+ .
+   - RFC 5838 Support of Address Families in OSPFv3
+ .
+ The implementation adds additional features beyond what is specified
+ in the above RFCs based on experience with emulations and WiFi-based
+ field experiments.
+
+Package: quagga-mr-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Suggests: quagga-mr
+Description: Documentation for the Mobile Routing variant of Quagga
+ This package includes an info and pdf version of the documentation,
+ as well as several text files.
+
+Package: quagga-mr-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: quagga-mr (= ${binary:Version}), ${misc:Depends}
+Description: Debugging symbols for the quagga-mr package
